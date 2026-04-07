@@ -18,7 +18,6 @@ function setMovie(movie) {
     }
   }
 }
-
 /** * Hilfsfunktion: Sammelt alle Daten aus dem Formular ein
  */
 function getMovie() {
@@ -52,7 +51,7 @@ function getMovie() {
   return movie;
 }
 
-/** * Task 3.3: Speichern der Daten per PUT
+/** * Task 3.3:
  */
 function putMovie() {
   const movie = getMovie();

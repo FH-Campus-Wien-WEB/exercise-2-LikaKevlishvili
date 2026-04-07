@@ -25,8 +25,6 @@ app.get('/movies', function (req, res) {
   const movieList = Object.values(movieModel);
   res.json(movieList);
 });
-
-
 /**
  * Task 2.1: Get a specific movie by its imdbID
  * Uses a path parameter ':imdbID' to identify the movie.
@@ -43,8 +41,6 @@ app.get('/movies/:imdbID', function (req, res) {
     res.status(404).send('Movie not found');
   }
 });
-
-
 /**
  * Task 3.1 & 3.2: Update an existing movie or create a new one
  * Receives JSON data in the request body and updates the model.
