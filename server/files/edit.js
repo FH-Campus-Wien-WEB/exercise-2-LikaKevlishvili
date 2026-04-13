@@ -1,24 +1,21 @@
 /** * Hilfsfunktion: Füllt das Formular mit Daten vom Server
  */
 function setMovie(movie) {
-  for (const element of document.forms[0].elements) {
-    const name = element.id;
-    const value = movie[name];
+  // Diese Zeilen löschen das Rätselraten - wir sagen genau, was wohin soll:
+  document.getElementById('imdbID').value = movie.imdbID || "";
+  document.getElementById('Title').value = movie.Title || "";
+  document.getElementById('Year').value = movie.Year || "";
+  document.getElementById('Plot').value = movie.Plot || "";
+  document.getElementById('Poster').value = movie.Poster || "";
 
-    if (name === "Genres") {
-      const options = element.options;
-      for (let index = 0; index < options.length; index++) {
-        const option = options[index];
-        // Markiert die Optionen als ausgewählt, wenn sie im Daten-Array stehen
-        option.selected = value && value.indexOf(option.value) >= 0;
-      }
-    } else if (element.id) {
-      // Setzt den Wert für normale Input-Felder und Textareas
-      element.value = value !== undefined ? value : "";
+  const genreSelect = document.getElementById('Genres');
+  if (movie.Genres && Array.isArray(movie.Genres)) {
+    for (const option of genreSelect.options) {
+      option.selected = movie.Genres.includes(option.value);
     }
   }
 }
-/** * Hilfsfunktion: Sammelt alle Daten aus dem Formular ein
+/** * აქ გროვდება ყველა ინფორმაცია ფორმულარიდან
  */
 function getMovie() {
   const movie = {};
@@ -75,8 +72,6 @@ function putMovie() {
   saveXhr.send(JSON.stringify(movie));
 }
 
-/** * Initiales Laden: Holt die Daten für den Film beim Seitenstart
- */
 const urlParams = new URLSearchParams(window.location.search);
 const imdbID = urlParams.get("imdbID");
 

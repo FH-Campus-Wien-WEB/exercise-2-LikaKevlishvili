@@ -13,11 +13,13 @@ window.onload = function () {
         movieCard.id = movie.imdbID;
 
         movieCard.innerHTML = `
-          <img src="${movie.poster}" alt="${movie.title}">
-          <h2>${movie.title}</h2>
-          <p>${movie.year}</p>
-          <button onclick="location.href='edit.html?imdbID=${movie.imdbID}'">Edit</button>
-        `;
+    <img src="${movie.Poster}" alt="${movie.Title}">
+    <h2>${movie.Title}</h2>
+    <p><strong>Year:</strong> ${movie.Year}</p>
+    <p><strong>Genres:</strong> ${movie.Genres.join(', ')}</p> 
+    <button onclick="location.href='edit.html?imdbID=${movie.imdbID}'">Edit</button>
+`;
+
 
         bodyElement.appendChild(movieCard);
       }
